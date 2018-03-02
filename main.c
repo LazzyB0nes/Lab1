@@ -35,7 +35,7 @@ if ((strcmp(".", entry->d_name)) == 0
 continue;
 //write(output,entry->d_name,strlen(entry->d_name));
 //write(output, " ", 1);
-//meta(entry->d_name);  
+//meta(entry->d_name);
 }
 
 else {
@@ -43,12 +43,12 @@ if ((strcmp("logfile.out", entry->d_name)) != 0) {
 write(output, "|", 1);
 write(output, entry->d_name, strlen(entry->d_name));
 write(output, " ", 1);
+write(output, &(statbuf.st_size), sizeof(statbuf.st_size));
+write(output, ".", 1);
 write(output, "\n", 1);
 while ((nread = read(in, block, sizeof(block))) > 0) {
 write(output, block, nread);
-size += nread;
 }
-write(output, size, size);.
 write(output, "\n", 1);
 }
 }
